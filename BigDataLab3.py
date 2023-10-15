@@ -21,6 +21,8 @@ print(volume_of_heat.info())
 # объединяем данные по одному признаку
 data = pd.merge(volume_of_heat, homes_harr, on='address_uuid', how='inner')
 
+data.to_csv('data.csv')
+
 # обрабатываем для объединения по дате
 weather_data['date_start'] = pd.to_datetime(weather_data['date_start'])
 weather_data['date'] = weather_data['date_start'].dt.date
@@ -67,6 +69,8 @@ X = X.drop('wall_type', axis=1)
 y = final_data['value']
 
 print(X.info())
+
+X.to_csv('x.csv')
 
 model = xg.XGBRegressor(n_estimators=1000, max_depth=100, eta=0.1, subsample=0.7, colsample_bytree=0.8)
 
